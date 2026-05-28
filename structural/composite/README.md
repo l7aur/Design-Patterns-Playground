@@ -1,5 +1,7 @@
 # Composite Design Pattern Notes
 
+![Diagram](figs/diagram.png)
+
 ## Intent
 
 - allow clients treat individual objects and composites **uniformly**.
