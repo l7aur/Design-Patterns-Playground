@@ -1,6 +1,6 @@
 # Composite Design Pattern Notes
 
-![Diagram](figs/diagram.png)
+![Diagram](figs/diagram.svg)
 
 ## Intent
 
