@@ -9,9 +9,16 @@
 #include <stdexcept>
 #include <iostream>
 
+// class AssetComposite;
+
 class Asset {
 public:
     virtual ~Asset() = default;
+
+    // the declaration below trades transparency for safety
+    // primitives won't be able to access children management methods, however nullptr checks become mandatory
+    // virtual AssetComposite* getComposite() { return nullptr; }
+    // this allows the add() and remove() methods to be declared at AssetComposite level
 
     std::string getName() const { return name; }
 

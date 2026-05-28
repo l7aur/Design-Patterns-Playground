@@ -25,7 +25,9 @@ void AssetComposite::remove(
 
 void AssetComposite::print(std::ostream &out, const unsigned int indent)
 {
-    out << "Asset name: \"" << getName() << "\" of value: " << getValue() << "\n";
+    out << std::string(indent, ' ')
+        << "Asset name: \"" << getName()
+        << "\" of value: " << getValue() << "\n";
     for (const auto& a : assets)
         a->print(out, indent + 2);
 }

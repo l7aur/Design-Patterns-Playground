@@ -7,6 +7,8 @@ class AssetComposite : public Asset
 public:
     ~AssetComposite() override = default;
 
+    // AssetComposite* getComposite() override { return this; }
+
     virtual money getValue() const override;
     virtual void add(std::unique_ptr<Asset> a) override;
     virtual void remove(const std::string& asset_name) override;
