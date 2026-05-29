@@ -47,6 +47,29 @@ int main(int argc, char* argv[])
     solution = ls.solve();
     printSolution(solution);
 
+    // Test 4
+    auto ls2 = LinearSystem(std::make_unique<GaussianElimination>());
+    ls2.setNumberOfEquations(2);
+    ls2.setNumberOfVariables(2);
+    ls2.setEquation(0, { 3.0, -2.0 }, -14.4);
+    ls2.setEquation(1, { 1.0, -1.2 }, -6.24);
+
+    ls2.print(std::cout);
+
+    solution = ls2.solve();
+    printSolution(solution);
+
+    ls2.setNumberOfEquations(3);
+    ls2.setNumberOfVariables(3);
+    ls2.setEquation(0, { 1.0, -1.0, -1.0 }, -2.8);
+    ls2.setEquation(1, { 3.0, 1.0, 1.0 }, 7.6);
+    ls2.setEquation(2, { 0.0, 1.0, -1.0 }, 0.6);
+
+    ls2.print(std::cout);
+
+    solution = ls2.solve();
+    printSolution(solution);
+
     return 0;
 }
 
