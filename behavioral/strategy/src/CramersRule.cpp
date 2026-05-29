@@ -1,8 +1,6 @@
 #include "CramersRule.hpp"
 #include "DeterminantComputationStrategy.hpp"
 
-#include <stdexcept>
-
 namespace
 {
     std::vector<std::vector<double>> exchangeColumn(

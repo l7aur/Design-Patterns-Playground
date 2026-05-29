@@ -1,7 +1,5 @@
 #include "SarrusRule.hpp"
 
-#include <stdexcept>
-
 double SarrusRule::determinant(
     const std::vector<std::vector<double>>& matrix
 ) const
@@ -20,6 +18,5 @@ double SarrusRule::determinant(
     if (matrix.size() == 2)
         return matrix.at(0).at(0) * matrix.at(1).at(1) - matrix.at(0).at(1) * matrix.at(1).at(0);
 
-    if (matrix.size() == 1)
-        return matrix.at(0).at(0);
+    return matrix.at(0).at(0);
 }

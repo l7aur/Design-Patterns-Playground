@@ -1,12 +1,11 @@
 #include "GaussianElimination.hpp"
 
-
 std::vector<double> GaussianElimination::apply(
     const std::vector<std::vector<double>>& x,
     const std::vector<double>& y
 ) const
 {
-    auto result = std::vector<double>(y.size());
+    throw std::runtime_error("Method not implemented!");
 
-    return result;
+    return std::vector<double>();
 }
