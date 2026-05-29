@@ -30,6 +30,10 @@
     {
       "name": "build",
       "configurePreset": "debug"
+    },
+    {
+      "name": "build-release",
+      "configurePreset": "release"
     }
   ]
 }
