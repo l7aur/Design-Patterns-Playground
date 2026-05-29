@@ -59,11 +59,26 @@ int main(int argc, char* argv[])
     solution = ls2.solve();
     printSolution(solution);
 
+    // Test 5
     ls2.setNumberOfEquations(3);
     ls2.setNumberOfVariables(3);
     ls2.setEquation(0, { 1.0, -1.0, -1.0 }, -2.8);
     ls2.setEquation(1, { 3.0, 1.0, 1.0 }, 7.6);
     ls2.setEquation(2, { 0.0, 1.0, -1.0 }, 0.6);
+
+    ls2.print(std::cout);
+
+    solution = ls2.solve();
+    printSolution(solution);
+
+    // Test 6
+    ls2.setNumberOfEquations(5);
+    ls2.setNumberOfVariables(5);
+    ls2.setEquation(0, { 2.0, 1.0, -3.0, 1.0, 1.0 }, 2.0);
+    ls2.setEquation(1, { 1.0, 3.0, 1.0, 2.0, 2.0 }, 15.0);
+    ls2.setEquation(2, { -1.0, 2.0, 4.0, 1.0, -1.0 }, 5.0);
+    ls2.setEquation(3, { 3.0, 1.0, -1.0, 2.0, -2.0 }, -5.0);
+    ls2.setEquation(4, { 1.0, -1.0, 2.0, -1.0, 3.0 }, 13.0);
 
     ls2.print(std::cout);
 

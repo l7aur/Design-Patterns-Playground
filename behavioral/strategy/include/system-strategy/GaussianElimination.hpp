@@ -13,7 +13,7 @@ public:
 private:
     int findIndexOfFirstRowWithNonNullEntryAt(
         const std::vector<std::vector<double>>& matrix,
-        const unsigned int columnIndex
+        const unsigned int startPivotIndex
     ) const;
     void swapRows(
         std::vector<std::vector<double>>& matrix,

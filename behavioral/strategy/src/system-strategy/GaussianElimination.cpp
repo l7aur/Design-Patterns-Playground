@@ -32,14 +32,14 @@ std::vector<double> GaussianElimination::apply(
 
 int GaussianElimination::findIndexOfFirstRowWithNonNullEntryAt(
     const std::vector<std::vector<double>>& matrix,
-    const unsigned int columnIndex
+    const unsigned int startPivotIndex
 ) const
 {
-    assert(columnIndex < matrix.size());
+    assert(startPivotIndex < matrix.size());
 
-    for (auto r = matrix.begin(); r != matrix.end(); r++)
-        if (r->at(columnIndex) != 0)
-            return std::distance(matrix.begin(), r);
+    for (auto r = startPivotIndex; r < matrix.size(); r++)
+        if (matrix.at(r).at(startPivotIndex) != 0)
+            return r;
 
     throw std::runtime_error("Redundant equations are not handled!");
     return -1;
