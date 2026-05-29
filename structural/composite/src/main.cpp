@@ -1,18 +1,19 @@
 #include "Portofolio.hpp"
 #include "Investment.hpp"
 #include "Loan.hpp"
+#include "Asset.hpp"
 
 int main(int argc, char* argv[])
 {
-    auto portofolio1 = std::make_unique<Portofolio>("John's Portofolio", 1);
-    auto portofolio2 = std::make_unique<Portofolio>("Mary's Portofolio", 2);
-    auto loan1 = std::make_unique<Loan>("Loan 1", -100);
-    auto loan2 = std::make_unique<Loan>("Loan 2", -200);
-    auto loan3 = std::make_unique<Loan>("Loan 3", -300);
+    std::unique_ptr<Asset> portofolio1 = std::make_unique<Portofolio>("John's Portofolio", 1);
+    std::unique_ptr<Asset> portofolio2 = std::make_unique<Portofolio>("Mary's Portofolio", 2);
 
-    auto investment1 = std::make_unique<Investment>("Investment 1", 1000);
-    auto investment2 = std::make_unique<Investment>("Investment 2", 5000);
+    std::unique_ptr<Asset> loan1 = std::make_unique<Loan>("Loan 1", -100);
+    std::unique_ptr<Asset> loan2 = std::make_unique<Loan>("Loan 2", -200);
+    std::unique_ptr<Asset> loan3 = std::make_unique<Loan>("Loan 3", -300);
 
+    std::unique_ptr<Asset> investment1 = std::make_unique<Investment>("Investment 1", 1000);
+    std::unique_ptr<Asset> investment2 = std::make_unique<Investment>("Investment 2", 5000);
 
     try {
         loan1->add(std::make_unique<Loan>("Malicious Loan", -10000));

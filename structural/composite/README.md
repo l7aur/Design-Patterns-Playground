@@ -1,6 +1,12 @@
 # Composite Design Pattern Notes
 
+## Diagram
+
 ![Diagram](figs/diagram.svg)
+
+## Example Diagram
+
+![My Diagram](figs/example.svg)
 
 ## Intent
 
@@ -18,7 +24,7 @@
 - **uniform** access to composite or primitive types.
 - composite and primitive **type erasure** means you cannot limit a composite to certain components -> runtime checks.
 
-## Implementation issues
+## Implementation Issues
 
 - parent references help in traversing the composites.
 - sharing components helps in reducing the space requirements; instead of storing multiple parent references enhance with flyweight design pattern.
