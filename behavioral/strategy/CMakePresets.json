@@ -1,0 +1,35 @@
+{
+  "version": 3,
+  "configurePresets": [
+    {
+      "name": "debug",
+      "displayName": "debug",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE" : "Debug",
+        "CMAKE_C_COMPILER" : "cl.exe",
+        "CMAKE_CXX_COMPILER" : "cl.exe",
+        "CMAKE_MAKE_PROGRAM" : "ninja.exe"
+      }
+    },
+    {
+      "name": "release",
+      "displayName": "release",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE" : "Release",
+        "CMAKE_C_COMPILER" : "cl.exe",
+        "CMAKE_CXX_COMPILER" : "cl.exe",
+        "CMAKE_MAKE_PROGRAM" : "ninja.exe"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "build",
+      "configurePreset": "debug"
+    }
+  ]
+}
