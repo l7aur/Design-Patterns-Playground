@@ -11,7 +11,8 @@ CharacterReplacer::CharacterReplacer(
 
 Stream &CharacterReplacer::operator<<(const std::string &str)
 {
-    *stream << replace(str);
+    auto new_str = replace(str);
+    StreamDecorator::operator<<(new_str);
     return *this;
 }
 
@@ -20,7 +21,7 @@ std::string CharacterReplacer::replace(const std::string &str) const
     std::string s{ "" };
 
     for (const auto& i : str) {
-        s.append(std::string(i == to_be_replaced ? &replacer : &i, 1));
+        s.append(std::string(i == to_be_replaced ? &replacer : &i, sizeof(char)));
     }
 
     return s;

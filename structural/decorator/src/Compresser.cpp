@@ -6,7 +6,8 @@ Compresser::Compresser(std::unique_ptr<Stream> stream_)
 
 Stream &Compresser::operator<<(const std::string &str)
 {
-    *stream << compress(str);
+    auto new_str = compress(str);
+    StreamDecorator::operator<<(new_str);
     return *this;
 }
 
@@ -22,7 +23,7 @@ std::string Compresser::compress(const std::string &str) const
         if (last_char == i)
             c++;
         else {
-            s.append(std::string(&last_char, 1))
+            s.append(std::string(&last_char, sizeof(char)))
              .append("#")
              .append(std::to_string(c));
             last_char = i;
