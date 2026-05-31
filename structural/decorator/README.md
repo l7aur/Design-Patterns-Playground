@@ -30,4 +30,4 @@ Attach additional responsibilities to individual objects dynamically. A flexible
 - the abstract class may be useless if you are extending an already existing class hierarchy; the forwarding in the abstract class can be merged in the decorator itself.
 - components and decorators must descend from a common, **lightweight** interface. Heavyweight component classes generally means that subclasses pay for features they do not use.
 - decorator changes the "skin" while strategy changes the "guts" of classes. Lightweight objects suit decorator, but heavyweight objects are better suited for strategy. Strategies may be lightweight even if the class is heavyweight, they have their own interface (must not conform to the one of the component), but changes are needed in the classes to be extended. With decorator, components know nothing about decorators (transparency), with strategies, components must maintain a reference to them.
-- you must maintain references to concrete objects if you need to access its interface.
+- you must maintain references to concrete objects if you need to access their interface in the future.
