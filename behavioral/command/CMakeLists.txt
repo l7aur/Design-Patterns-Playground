@@ -21,4 +21,6 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
 
 target_include_directories(${PROJECT_NAME} PRIVATE
     include/
+    include/command
+    include/model
 )
