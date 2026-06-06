@@ -27,14 +27,14 @@ int main(int argc, char* argv[])
         switch (key)
         {
         case 'n': {
-            int x; std::cin >> x;
+            int x = 0; std::cin >> x;
             std::unique_ptr<Command> cmd = std::make_unique<NavigateCommand>(&f, x);
             cmd->execute();
             tracker.add(std::move(cmd));
             break;
         }
         case 'c': {
-            int x; std::cin >> x;
+            int x = 0; std::cin >> x;
             std::unique_ptr<Command> cmd = std::make_unique<CopyCommand>(&f, x);
             cmd->execute();
             tracker.add(std::move(cmd));
@@ -47,7 +47,7 @@ int main(int argc, char* argv[])
             break;
         }
         case 'o': {
-            std::filesystem::path p; std::cin >> p;
+            std::filesystem::path p = ""; std::cin >> p;
             std::unique_ptr<Command> cmd = std::make_unique<OpenCommand>(&f, p);
             try {
                 cmd->execute();
@@ -67,7 +67,6 @@ int main(int argc, char* argv[])
         case 'd': {
             std::unique_ptr<Command> cmd = std::make_unique<DisplayCommand>(&f);
             cmd->execute();
-            tracker.add(std::move(cmd));
             break;
         }
         case 'x': {
@@ -77,19 +76,19 @@ int main(int argc, char* argv[])
             break;
         }
         case 'l': {
-            char old, c; std::cin >> old >> c;
+            char old = 'x', c = 'x'; std::cin >> old >> c;
             std::unique_ptr<Command> cmd = std::make_unique<ReplaceAllCommand>(&f, old, c);
             cmd->execute();
             tracker.add(std::move(cmd));
             break;
         }
         case 'u': {
-            unsigned int x; std::cin >> x;
+            unsigned int x = 0; std::cin >> x;
             tracker.undo(x);
             break;
         }
         case 'r': {
-            unsigned int x; std::cin >> x;
+            unsigned int x = 0; std::cin >> x;
             tracker.redo(x);
             break;
         }
@@ -97,6 +96,12 @@ int main(int argc, char* argv[])
             return 0;
         default:
             break;
+        }
+     
+        if (std::cin.fail()) {
+            std::cout << "Invalid input!\n";
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         }
     }
 

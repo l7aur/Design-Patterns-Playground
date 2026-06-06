@@ -10,11 +10,11 @@ ReplaceFirstCommand::ReplaceFirstCommand(File* const file_, const char old_, con
 
 void ReplaceFirstCommand::execute()
 {
-    index = file->find_first(c);
+    index = file->find_first(old);
     old = file->replace(index, c);
 }
 
 void ReplaceFirstCommand::undo()
 {
-    file->replace(index, old);
+    (void)file->replace(index, old);
 }

@@ -1,8 +1,7 @@
 #pragma once
 
+#include "File.hpp"
 #include "SimpleCommand.hpp"
-
-class File;
 
 class PasteCommand : public SimpleCommand<File>
 {

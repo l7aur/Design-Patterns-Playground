@@ -1,8 +1,7 @@
 #pragma once
 
-#include "SimpleCommand.hpp"
-
 #include "File.hpp"
+#include "SimpleCommand.hpp"
 
 class DisplayCommand : public SimpleCommand<File>
 {

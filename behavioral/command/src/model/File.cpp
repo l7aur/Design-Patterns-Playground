@@ -41,22 +41,14 @@ void File::copy(const int howMany)
 void File::paste()
 {
     data.resize(buffer.size() + data.size());
-    for (int i = data.size() - 1; i >= (std::max)(pointer, static_cast<int>(buffer.size())); i--)
-        data.at(i) = data.at(i - buffer.size());
-
-    for (auto i = 0; i < buffer.size(); i++)
-        data.at(pointer + i) = buffer.at(i);
-
+    data.insert(data.begin() + pointer, buffer.begin(), buffer.end());
     pointer += buffer.size();
 }
 
 void File::unpaste()
 {
     pointer -= buffer.size();
-
-    for (int i = pointer; i < data.size(); i++)
-        data.at(i) = data.at(i + buffer.size());
-
+    data.erase(data.begin() + pointer, data.begin() + pointer + buffer.size());
     data.resize(data.size() - buffer.size());
 }
 
@@ -80,12 +72,13 @@ void File::save()
 {
     fp.seekp(0);
     fp.write(data.data(), data.size());
+    fp.flush();
 }
 
 char File::replace(const int where, const char c)
 {
     if (where < 0 || where >= data.size())
-        throw std::runtime_error("Where are you trying to replace?");
+        return c;
 
     auto old = data.at(where);
     data.at(where) = c;
@@ -96,7 +89,7 @@ char File::replace(const int where, const char c)
 int File::find_first(const char c, const int start)
 {
     if (start >= data.size())
-        throw std::runtime_error("Where are you trying to find_first?");
+        return -1;
 
     for (auto it = std::next(data.begin(), start); it != data.end(); it++)
         if (c == *it)

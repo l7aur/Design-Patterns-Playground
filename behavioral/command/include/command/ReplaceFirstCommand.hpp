@@ -7,7 +7,7 @@ class File;
 class ReplaceFirstCommand : public Command
 {
 public:
-    ReplaceFirstCommand(File* file_, const char old_, const char c_);
+    ReplaceFirstCommand(File* const file_, const char old_, const char c_);
     ~ReplaceFirstCommand() override = default;
 
     int getIndex() const { return index; }

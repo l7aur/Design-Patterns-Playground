@@ -28,7 +28,7 @@ void MacroCommand::execute()
 
 void MacroCommand::undo()
 {
-    for (auto it = commands.rend(); it != commands.rbegin(); it++)
+    for (auto it = commands.rbegin(); it != commands.rend(); it++)
         (*it)->undo();   
 }
 
