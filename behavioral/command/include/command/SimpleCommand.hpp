@@ -2,27 +2,31 @@
 
 #include "Command.hpp"
 
-#include <memory>
-
 template<typename Receiver>
 class SimpleCommand : public Command
 {
 public:
-    SimpleCommand(std::unique_ptr<Receiver> rcv, void (Receiver::*operation)());
+    SimpleCommand(
+        Receiver* const rcv,
+        void (Receiver::*operation)()
+    );
     ~SimpleCommand() = default;
 
     void execute() override;
     void undo() override;
     void redo() override;
 
-private:
-    std::unique_ptr<Receiver> receiver;
-    void (Receiver::*operation)() action;
+protected:
+    Receiver* const receiver;
+    void (Receiver::*action)();
 };
 
 template <typename Receiver>
-inline SimpleCommand<Receiver>::SimpleCommand(std::unique_ptr<Receiver> rcv, void (Receiver::*operation)())
-    : receiver{ std::move(recv) }
+inline SimpleCommand<Receiver>::SimpleCommand(
+    Receiver* const rcv,
+    void (Receiver::*operation)()
+)
+    : receiver{ rcv }
     , action{ operation }
 {
 }
@@ -30,6 +34,7 @@ inline SimpleCommand<Receiver>::SimpleCommand(std::unique_ptr<Receiver> rcv, voi
 template <typename Receiver>
 inline void SimpleCommand<Receiver>::execute()
 {
+    (receiver->*action)();
 }
 
 template <typename Receiver>
