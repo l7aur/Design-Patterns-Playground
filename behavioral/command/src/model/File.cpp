@@ -8,6 +8,9 @@ File::File()
 
 void File::open(const std::filesystem::path &p)
 {
+    if (fp.is_open())
+        fp.close();
+
     fp.open(p, std::ios_base::in | std::ios_base::out);
 
     if (!fp.is_open())
@@ -47,6 +50,16 @@ void File::paste()
     pointer += buffer.size();
 }
 
+void File::unpaste()
+{
+    pointer -= buffer.size();
+
+    for (int i = pointer; i < data.size(); i++)
+        data.at(i) = data.at(i + buffer.size());
+
+    data.resize(data.size() - buffer.size());
+}
+
 void File::navigate(const int index)
 {
     pointer += index;
@@ -67,4 +80,35 @@ void File::save()
 {
     fp.seekp(0);
     fp.write(data.data(), data.size());
+}
+
+char File::replace(const int where, const char c)
+{
+    if (where < 0 || where >= data.size())
+        throw std::runtime_error("Where are you trying to replace?");
+
+    auto old = data.at(where);
+    data.at(where) = c;
+
+    return old;
+}
+
+int File::find_first(const char c, const int start)
+{
+    if (start >= data.size())
+        throw std::runtime_error("Where are you trying to find_first?");
+
+    for (auto it = std::next(data.begin(), start); it != data.end(); it++)
+        if (c == *it)
+            return std::distance(data.begin(), it);
+    return -1;
+}
+
+int File::count(const char c)
+{
+    int cnt = 0;
+    for (const auto& ch : data)
+        if (c == ch)
+            cnt++;
+    return cnt;
 }

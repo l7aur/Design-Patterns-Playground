@@ -16,8 +16,5 @@ void CopyCommand::execute()
 
 void CopyCommand::undo()
 {
-}
-
-void CopyCommand::redo()
-{
+    file->copy(0);
 }

@@ -10,11 +10,10 @@ public:
         Receiver* const rcv,
         void (Receiver::*operation)()
     );
-    ~SimpleCommand() = default;
+    ~SimpleCommand() override = default;
 
     void execute() override;
-    void undo() override;
-    void redo() override;
+    virtual void undo() override;
 
 protected:
     Receiver* const receiver;
@@ -40,9 +39,5 @@ inline void SimpleCommand<Receiver>::execute()
 template <typename Receiver>
 inline void SimpleCommand<Receiver>::undo()
 {
-}
-
-template <typename Receiver>
-inline void SimpleCommand<Receiver>::redo()
-{
+    // do nothing
 }

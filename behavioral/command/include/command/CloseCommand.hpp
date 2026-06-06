@@ -10,4 +10,5 @@ public:
     CloseCommand(
         File* const f
     ) : SimpleCommand<File>(f, &File::close) { }
+    ~CloseCommand() override = default;
 };

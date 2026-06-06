@@ -13,10 +13,10 @@ public:
         File* const file_,
         const std::filesystem::path& p_
     );
+    ~OpenCommand() override = default;
 
     void execute() override;
     void undo() override;
-    void redo() override;
 
 private:
     File* const file;

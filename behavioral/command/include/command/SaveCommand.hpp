@@ -10,4 +10,5 @@ public:
     SaveCommand(
         File* const file
     ) : SimpleCommand<File>(file, &File::save) { }
+    ~SaveCommand() override = default;
 };

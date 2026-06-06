@@ -11,12 +11,12 @@ public:
         File* const file_,
         const int howMany_
     );
+    ~NavigateCommand() override = default;
 
     void execute() override;
     void undo() override;
-    void redo() override;
 
 private:
-    File* file;
+    File* const file;
     const int howMany;
 };

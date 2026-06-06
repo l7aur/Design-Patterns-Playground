@@ -16,8 +16,5 @@ void OpenCommand::execute()
 
 void OpenCommand::undo()
 {
-}
-
-void OpenCommand::redo()
-{
+    file->close();
 }

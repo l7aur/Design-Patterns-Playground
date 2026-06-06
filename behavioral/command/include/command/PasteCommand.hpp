@@ -2,12 +2,15 @@
 
 #include "SimpleCommand.hpp"
 
-#include "File.hpp"
+class File;
 
 class PasteCommand : public SimpleCommand<File>
 {
 public:
     PasteCommand(
         File* const file
-    ) : SimpleCommand<File>(file, &File::paste) { }
+    );
+    ~PasteCommand() override = default;
+
+    void undo() override;
 };

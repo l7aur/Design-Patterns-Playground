@@ -10,4 +10,5 @@ public:
     DisplayCommand(
         File* const f
     ) : SimpleCommand<File>(f, &File::display) { }
+    ~DisplayCommand() override = default;
 };

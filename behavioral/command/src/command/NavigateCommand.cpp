@@ -15,8 +15,5 @@ void NavigateCommand::execute()
 
 void NavigateCommand::undo()
 {
-}
-
-void NavigateCommand::redo()
-{
+    file->navigate(-howMany);
 }

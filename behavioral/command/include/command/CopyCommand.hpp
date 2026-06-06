@@ -11,10 +11,10 @@ public:
         File* const file_,
         const size_t howMany_
     );
+    ~CopyCommand() override = default;
 
     void execute() override;
     void undo() override;
-    void redo() override;
 
 private:
     File* const file;
