@@ -23,6 +23,7 @@ public:
     int count(const char c);
 
 private:
+    std::filesystem::path filePath{};
     std::fstream fp{};
     int pointer{ 0 };
     std::vector<char> data{};

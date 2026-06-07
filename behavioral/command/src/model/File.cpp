@@ -8,10 +8,11 @@ File::File()
 
 void File::open(const std::filesystem::path &p)
 {
+    filePath = p;
     if (fp.is_open())
         fp.close();
 
-    fp.open(p, std::ios_base::in | std::ios_base::out);
+    fp.open(filePath, std::ios_base::in);
 
     if (!fp.is_open())
         throw std::runtime_error("Failed to open file!");
@@ -27,6 +28,7 @@ void File::open(const std::filesystem::path &p)
 
 void File::close()
 {
+    filePath.clear();
     fp.close();
 }
 
@@ -34,14 +36,14 @@ void File::copy(const int howMany)
 {
     buffer.resize(howMany);
 
-    for (auto i = 0; i < howMany; i++)
+    for (auto i = 0; i < howMany && i + pointer < data.size(); i++)
         buffer.at(i) = data.at(i + pointer);
 }
 
 void File::paste()
 {
-    data.resize(buffer.size() + data.size());
     data.insert(data.begin() + pointer, buffer.begin(), buffer.end());
+    data.shrink_to_fit();
     pointer += buffer.size();
 }
 
@@ -49,7 +51,7 @@ void File::unpaste()
 {
     pointer -= buffer.size();
     data.erase(data.begin() + pointer, data.begin() + pointer + buffer.size());
-    data.resize(data.size() - buffer.size());
+    data.shrink_to_fit();
 }
 
 void File::navigate(const int index)
@@ -70,9 +72,14 @@ void File::display()
 
 void File::save()
 {
-    fp.seekp(0);
+    fp.close();
+
+    fp.open(filePath, std::ios_base::trunc | std::ios_base::out);
     fp.write(data.data(), data.size());
     fp.flush();
+    fp.close();
+
+    fp.open(filePath, std::ios_base::in);
 }
 
 char File::replace(const int where, const char c)
