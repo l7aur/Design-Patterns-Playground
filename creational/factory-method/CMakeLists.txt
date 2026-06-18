@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.21)
 
-project(abstract-factory)
+project(factory-method)
 
 file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS
     "src/*.cpp"
@@ -21,6 +21,4 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
 
 target_include_directories(${PROJECT_NAME} PRIVATE
     include/
-    include/high-school/
-    include/university/
 )
