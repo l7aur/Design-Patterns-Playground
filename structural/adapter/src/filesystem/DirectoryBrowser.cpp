@@ -11,6 +11,10 @@ std::list<std::unique_ptr<Node>> DirectoryBrowser::getChildren(const TreeDisplay
 
     std::list<std::unique_ptr<Node>> children;
     for (FileSystemEntity& child : fse->entities) {
+        if (!std::filesystem::is_directory(child.path)) {
+            continue;
+        }
+
         auto node                  = std::make_unique<Node>(n, child.path.filename().string());
         conversion_map[node.get()] = &child;
         children.push_back(std::move(node));
@@ -23,5 +27,3 @@ std::unique_ptr<GraphicNode> DirectoryBrowser::createGraphicNode(const TreeDispl
     /* use `display` to query for style */
     return std::make_unique<GraphicNode>(n->text, n->depth());
 }
-
-void DirectoryBrowser::convert(Node* n, FileSystemEntity* ent) const {}
