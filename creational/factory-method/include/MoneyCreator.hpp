@@ -4,10 +4,14 @@
 
 class Money;
 
+template <typename T>
 class MoneyCreator
 {
+    static_assert(std::is_base_of_v<Money, T>);
+
 public:
-    static std::unique_ptr<Money> createDollars(int value);
-    static std::unique_ptr<Money> createEuros(int value);
-    static std::unique_ptr<Money> createLions(int value);
+    static std::unique_ptr<Money> create(int value)
+    {
+        return std::make_unique<T>(value);
+    }
 };
